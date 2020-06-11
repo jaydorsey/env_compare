@@ -1,6 +1,7 @@
 # EnvCompare
 
-A gem for viewing and comparing environment variables in Heroku.
+Compare Heroku ENV variables across environments in an HTML
+table.
 
 In a perfect world, you're using a platform or tool for managing your
 environment variables across Heroku environments. However, you may
@@ -14,13 +15,30 @@ No server; it's all done via a CLI. It's really just a wrapper around
 some commands around the [heroku cli](https://devcenter.heroku.com/articles/heroku-cli) that does some formatting and
 munging of the output so you don't have to copy it all to Excel
 
+This gem wraps the heroku CLI tool to generates a small temporary
+HTML file & opens it using [launchy](https://github.com/copiousfreetime/launchy)
+
+It automates a few things:
+- Hides environment variables that match across all environments
+- Puts them in alpha order
+
+It's primarily intended to compare pre-production ENV variables
+
 ## Installation
 
+    # Install heroku CLI
     brew tap heroku/brew && brew install heroku
-    rake build
-    gem install pkg/env_compare*
 
-After installation you should have access to the `ec` executable
+    git clone https://github.com/jaydorsey/env_compare.git && cd env_compare
+    bundle
+    rake build
+    gem install pkg/env_compare-0.1.0.gem
+
+After installation you should have access to the `ec` executable wrapper
+
+> Note: There's no published gem yet. I'm not really sure how useful this is
+> but you can install via above or use the development commands below if you
+> don't want to build & install the gem locally
 
 ## Usage
 
@@ -38,6 +56,7 @@ Create a file showing differences between 2 or more heroku environments:
 
 To test this on your machine locally, after cloning the repo:
 
+    git clone https://github.com/jaydorsey/env_compare.git && cd env_compare
     bundle
     bundle exec exe/ec diff env1 env2
 
