@@ -20,22 +20,26 @@ munging of the output so you don't have to copy it all to Excel
     rake build
     gem install pkg/env_compare*
 
+After installation you should have access to the `ec` executable
+
 ## Usage
 
 First, you need to login with heroku cli:
 
     heroku login
 
+Then, you can use the `ec` command
+
 Create a file showing differences between 2 or more heroku environments:
 
-    env_compare diff env1 env2 env3
+    ec diff env1 env2 env3
 
 ## Development
 
 To test this on your machine locally, after cloning the repo:
 
-  bundle
-  bundle exec exe/ec diff env1 env2
+    bundle
+    bundle exec exe/ec diff env1 env2
 
 ## Contributing
 
