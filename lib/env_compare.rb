@@ -51,9 +51,22 @@ module EnvCompare
 
         template = ERB.new <<~TEMPLATE
           <html>
-            <head></head>
+            <head>
+            <style>
+            table {
+              table-layout: fixed;
+              width: 100%;
+            }
+            tr:nth-child(even) {background: #CCC}
+            tr:nth-child(odd) {background: #FFF}
+            td {
+              word-wrap: break-word;
+              padding: 10px;
+            }
+            </style>
+            </head>
             <body>
-              <table border="1">
+              <table>
                 <tr>
                 <% headers.each do |header| %>
                   <th><%= header %></th>
@@ -62,7 +75,11 @@ module EnvCompare
                 <% data.each do |row| %>
                   <tr>
                     <% row.each do |cell| %>
-                      <td><%= cell %></td>
+                      <td>
+                        <% unless cell.nil? %>
+                          <code><%= cell %></code>
+                        <% end %>
+                      </td>
                     <% end %>
                   </tr>
                 <% end %>
