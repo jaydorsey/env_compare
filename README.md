@@ -11,7 +11,7 @@ This gem helps pull down the environment variables and give you
 a little interface to view & compare them with (via a UI)
 
 No server; it's all done via a CLI. It's really just a wrapper around
-some commands around the [heroku cli] that does some formatting and
+some commands around the [heroku cli](https://devcenter.heroku.com/articles/heroku-cli) that does some formatting and
 munging of the output so you don't have to copy it all to Excel
 
 ## Installation
