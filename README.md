@@ -48,9 +48,9 @@ First, you need to login with heroku cli:
 
 Then, you can use the `ec` command
 
-Create a file showing differences between 2 or more heroku environments:
+Create a file showing differences between 2 or more heroku applications:
 
-    ec diff env1 env2 env3
+    ec diff heroku-app-name1 heroku-app-name2 heroku-app-name3
 
 ## Development
 
@@ -58,7 +58,7 @@ To test this on your machine locally, after cloning the repo:
 
     git clone https://github.com/jaydorsey/env_compare.git && cd env_compare
     bundle
-    bundle exec exe/ec diff env1 env2
+    bundle exec ec diff heroku-app-name1 heroku-app-name2
 
 ## Contributing
 
