@@ -92,8 +92,11 @@ module EnvCompare
           <html>
             <head>
             <style>
-            table {
+            body {
               background: #000;
+              font-family: Arial, Helvetica, sans-serif;
+            }
+            table {
               color: #da8fff;
               table-layout: fixed;
               width: 100%;
@@ -106,7 +109,6 @@ module EnvCompare
 
             th {
               color: #ffb340;
-              font-family: Arial, Helvetica, sans-serif;
               letter-spacing: 1px;
             }
 
