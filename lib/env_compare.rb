@@ -125,6 +125,11 @@ module EnvCompare
             <body>
               <table>
                 <tr>
+                  <td align="center" colspan="<%= headers.size %>">
+                   <%= data.size %> keys
+                  </td>
+                </tr>
+                <tr>
                 <% headers.each do |header| %>
                   <th><%= header %></th>
                 <% end %>
