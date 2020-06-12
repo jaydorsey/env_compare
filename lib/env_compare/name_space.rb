@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module EnvCompare
   class NameSpace
     def initialize(hash)
