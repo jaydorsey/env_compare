@@ -26,35 +26,49 @@ It's primarily intended to compare pre-production ENV variables
 
 ## Installation
 
-    # Install heroku CLI
-    brew tap heroku/brew && brew install heroku
+### Prerequisites
+- Install Heroku CLI
+  ```bash
+  brew tap heroku/brew && brew install heroku
+  ```
 
-    git clone https://github.com/jaydorsey/env_compare.git && cd env_compare
-    bundle
-    rake build
-    gem install pkg/env_compare-0.1.0.gem
+- Login with Heroku CLI
+  ```bash
+  heroku login
+  ```
 
-After installation you should have access to the `ec` executable wrapper
+### Install gem
+```bash
+gem install env_compare
+```
 
-> Note: There's no published gem yet. I'm not really sure how useful this is
-> but you can install via above or use the development commands below if you
-> don't want to build & install the gem locally
+After installation you should have access to the `ec` executable wrapper.
+
 
 ## Usage
+Use `ec` command to start comparing 2 or more heroku application environment variables.
 
-First, you need to login with heroku cli:
+When only one application name is specified, output is shown in cli. Otherwise, your default browser is launched.
 
-    heroku login
+### Show **differences** **default*
+```bash
+ec diff heroku-app-name1 heroku-app-name2 heroku-app-name3
+```
 
-Then, you can use the `ec` command
+### Show **all**
+add `--all` option:
+```bash
+ec diff --all heroku-app-name1 heroku-app-name2 heroku-app-name3
+```
 
-Create a file showing **differences** between 2 or more heroku applications:
+### Themes
+- `--theme dark` **default*
+- `--theme light`
 
-    ec diff heroku-app-name1 heroku-app-name2 heroku-app-name3
-
-Show **all** environment variables between 2 or more heroku applications:
-
-    ec diff --all heroku-app-name1 heroku-app-name2 heroku-app-name3
+For Example:
+```bash
+ec diff --theme light heroku-app-name1 heroku-app-name2
+```
 
 ## Development
 
