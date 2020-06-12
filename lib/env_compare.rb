@@ -20,6 +20,7 @@ module EnvCompare
       puts output
     end
 
+    option :all, type: :boolean, default: false, desc: "Display all ENV variables, including matches"
     desc "diff ENV1 ENV2", "Compare environment variables for 2+ environments"
     def diff(*envs)
       if envs.size == 1
@@ -45,7 +46,7 @@ module EnvCompare
 
         different_results = all_keys.sort.map { |key|
           results = envs.map { |env| res[env][key] }
-          next if results.uniq.size == 1
+          next if results.uniq.size == 1 && !options[:all]
           [key, *results]
         }.compact
 
