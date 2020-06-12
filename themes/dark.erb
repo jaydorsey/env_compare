@@ -1,23 +1,34 @@
 <html>
   <head>
   <style>
+  :root {
+    --black: #000;
+    --blue: #409cff;
+    --gray-object-only: #636366;
+    --orange: #ffb340;
+    --purple: #da8fff;
+  }
+
   body {
-    background: #000;
+    background: var(--black);
     font-family: Arial, Helvetica, sans-serif;
   }
+
   table {
-    color: #da8fff;
+    color: var(--purple);
     table-layout: fixed;
     width: 100%;
   }
 
-  table, th, td {
-    border: 1px solid #636366;
+  table,
+  th,
+  td {
+    border: 1px solid var(--gray-object-only);
     border-collapse: collapse;
   }
 
   th {
-    color: #ffb340;
+    color: var(--orange);
     letter-spacing: 1px;
   }
 
@@ -27,7 +38,7 @@
   }
 
   td:first-child {
-    color: #409cff;
+    color: var(--blue);
   }
   </style>
   </head>
