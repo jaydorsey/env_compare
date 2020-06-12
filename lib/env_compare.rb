@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'env_compare/errors'
 require 'env_compare/name_space'
 require 'env_compare/version'
 require 'erb'
@@ -24,6 +25,7 @@ module EnvCompare
       puts output
     end
 
+    option :theme, type: :string, default: 'dark', desc: 'Theme to use'
     option :all, type: :boolean, default: false, desc: 'Display all ENV variables, including matches'
     desc 'diff ENV1 ENV2', 'Compare environment variables for 2+ environments'
     def diff(*envs)
@@ -33,7 +35,7 @@ module EnvCompare
 
       # https://stackoverflow.com/a/5462069/2892779
       html =
-        template.
+        theme(options[:theme]).
           result(
             ::EnvCompare::NameSpace.new(data: calculated_output(envs), headers: ['KEY', envs].flatten).get_binding
           )
@@ -86,67 +88,14 @@ module EnvCompare
       File.delete(full_path)
     end
 
-    def template
-      @template ||=
-        ERB.new <<~TEMPLATE
-          <html>
-            <head>
-            <style>
-            body {
-              background: #000;
-              font-family: Arial, Helvetica, sans-serif;
-            }
-            table {
-              color: #da8fff;
-              table-layout: fixed;
-              width: 100%;
-            }
+    def theme(file)
+      return ERB.new(File.read(theme_path(file))) if File.exist?(theme_path(file))
 
-            table, th, td {
-              border: 1px solid #636366;
-              border-collapse: collapse;
-            }
+      raise MissingThemeError
+    end
 
-            th {
-              color: #ffb340;
-              letter-spacing: 1px;
-            }
-
-            td {
-              padding: 10px;
-              word-wrap: break-word;
-            }
-
-            td:first-child {
-              color: #409cff;
-            }
-            </style>
-            </head>
-            <body>
-              <table>
-                <tr>
-                <% headers.each_with_index do |header, idx| %>
-                  <th>
-                    <%= header %>&nbsp;
-                    (<%= data.map { |col| col[idx] }.compact.size - 1 %> keys)
-                  </th>
-                <% end %>
-                </tr>
-                <% data.each do |row| %>
-                  <tr>
-                    <% row.each do |cell| %>
-                      <td>
-                        <% unless cell.nil? %>
-                          <code><%= cell %></code>
-                        <% end %>
-                      </td>
-                    <% end %>
-                  </tr>
-                <% end %>
-              </table>
-            </body>
-          </html>
-        TEMPLATE
+    def theme_path(file)
+      @theme_path ||= File.join(File.dirname(__dir__), 'themes', "#{file}.erb")
     end
   end
 end
