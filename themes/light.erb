@@ -1,23 +1,33 @@
 <html>
   <head>
   <style>
+  :root {
+    --black: #000;
+    --blue: #0040dd;
+    --gray: #545456;
+    --white: #fff;
+  }
+
   body {
-    background: #fff;
+    background: var(--white);
     font-family: Arial, Helvetica, sans-serif;
   }
+
   table {
-    color: #000;
+    color: var(--black);
     table-layout: fixed;
     width: 100%;
   }
 
-  table, th, td {
-    border: 1px solid #636366;
+  table,
+  th,
+  td {
+    border: 1px solid var(--gray);
     border-collapse: collapse;
   }
 
   th {
-    color: #000;
+    color: var(--black);
     letter-spacing: 1px;
   }
 
@@ -27,7 +37,7 @@
   }
 
   td:first-child {
-    color: #409cff;
+    color: var(--blue);
   }
   </style>
   </head>
