@@ -54,14 +54,30 @@ module EnvCompare
             <head>
             <style>
             table {
+              background: #121212;
+              color: #af87ff;
               table-layout: fixed;
               width: 100%;
             }
-            tr:nth-child(even) {background: #CCC}
-            tr:nth-child(odd) {background: #FFF}
+
+            table, th, td {
+              border: 1px solid #424d66;
+              border-collapse: collapse;
+            }
+
+            th {
+              color: #ff9700;
+              font-family: Arial, Helvetica, sans-serif;
+              letter-spacing: 1px;
+            }
+
             td {
-              word-wrap: break-word;
               padding: 10px;
+              word-wrap: break-word;
+            }
+
+            td:first-child {
+              color: #62d8f1;
             }
             </style>
             </head>
