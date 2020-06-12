@@ -27,6 +27,7 @@ module EnvCompare
 
     option :theme, type: :string, default: 'dark', desc: 'Theme to use'
     option :all, type: :boolean, default: false, desc: 'Display all ENV variables, including matches'
+    option :matches, type: :boolean, default: false, desc: 'Display matched ENV variables'
     desc 'diff heroku-app-name-1 heroku-app-name-2', 'Compare environment variables for 2+ environments'
     def diff(*envs)
       return list(envs.first) if envs.size == 1
@@ -52,6 +53,7 @@ module EnvCompare
     def calculated_output(envs)
       all_keys.sort.map do |key|
         results = envs.map { |env| heroku_results[env][key] }
+        next if options[:matches] && results.uniq.size >= 2
         next if results.uniq.size == 1 && !options[:all]
 
         [key, *results]
