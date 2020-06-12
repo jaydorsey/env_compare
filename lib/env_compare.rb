@@ -54,19 +54,19 @@ module EnvCompare
             <head>
             <style>
             table {
-              background: #121212;
-              color: #af87ff;
+              background: #000;
+              color: #da8fff;
               table-layout: fixed;
               width: 100%;
             }
 
             table, th, td {
-              border: 1px solid #424d66;
+              border: 1px solid #636366;
               border-collapse: collapse;
             }
 
             th {
-              color: #ff9700;
+              color: #ffb340;
               font-family: Arial, Helvetica, sans-serif;
               letter-spacing: 1px;
             }
@@ -77,7 +77,7 @@ module EnvCompare
             }
 
             td:first-child {
-              color: #62d8f1;
+              color: #409cff;
             }
             </style>
             </head>
