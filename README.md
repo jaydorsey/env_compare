@@ -48,9 +48,13 @@ First, you need to login with heroku cli:
 
 Then, you can use the `ec` command
 
-Create a file showing differences between 2 or more heroku applications:
+Create a file showing **differences** between 2 or more heroku applications:
 
     ec diff heroku-app-name1 heroku-app-name2 heroku-app-name3
+
+Show **all** environment variables between 2 or more heroku applications:
+
+    ec diff --all heroku-app-name1 heroku-app-name2 heroku-app-name3
 
 ## Development
 
