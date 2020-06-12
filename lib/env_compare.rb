@@ -27,7 +27,7 @@ module EnvCompare
 
     option :theme, type: :string, default: 'dark', desc: 'Theme to use'
     option :all, type: :boolean, default: false, desc: 'Display all ENV variables, including matches'
-    desc 'diff ENV1 ENV2', 'Compare environment variables for 2+ environments'
+    desc 'diff heroku-app-name-1 heroku-app-name-2', 'Compare environment variables for 2+ environments'
     def diff(*envs)
       return list(envs.first) if envs.size == 1
 
