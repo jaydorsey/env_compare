@@ -125,13 +125,11 @@ module EnvCompare
             <body>
               <table>
                 <tr>
-                  <td align="center" colspan="<%= headers.size %>">
-                   <%= data.size %> keys
-                  </td>
-                </tr>
-                <tr>
-                <% headers.each do |header| %>
-                  <th><%= header %></th>
+                <% headers.each_with_index do |header, idx| %>
+                  <th>
+                    <%= header %>&nbsp;
+                    (<%= data.map { |col| col[idx] }.compact.size - 1 %> keys)
+                  </th>
                 <% end %>
                 </tr>
                 <% data.each do |row| %>
