@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require "env_compare"
+require 'env_compare'
 
 EnvCompare::CLI.start(ARGV)
