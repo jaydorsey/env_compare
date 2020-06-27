@@ -2,4 +2,4 @@
 
 require 'env_compare'
 
-EnvCompare::CLI.start(ARGV)
+EnvCompare::Cli.start(ARGV)
