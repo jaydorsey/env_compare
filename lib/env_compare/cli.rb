@@ -7,7 +7,7 @@ require 'pry'
 require 'thor'
 
 module EnvCompare
-  class CLI < Thor
+  class Cli < Thor
     attr_accessor :envs
 
     desc 'version', 'list version'
