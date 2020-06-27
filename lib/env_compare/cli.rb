@@ -3,6 +3,7 @@
 require 'erb'
 require 'launchy'
 require 'securerandom'
+require 'platform-api'
 require 'pry'
 require 'thor'
 
@@ -55,17 +56,17 @@ module EnvCompare
       end.compact
     end
 
-    def heroku_results(envs = nil)
+    def heroku_results(app_names = nil)
       @heroku_results ||=
-        envs.each_with_object({}) do |env, obj|
-          obj[env] = {}
-          lines = `heroku config -a #{env}`.split("\n").drop(1)
+        app_names.each_with_object({}) do |app_name, obj|
+          obj[app_name] = {}
 
-          lines.each do |line|
-            key, _, value = line.partition(':')
-            obj[env][key.strip] = value.strip
+          env_vars = config_vars_for_app(app_name)
 
-            all_keys << key.strip
+          env_vars.each do |key, value|
+            obj[app_name][key] = value
+
+            all_keys << key
           end
         end
     end
@@ -83,6 +84,14 @@ module EnvCompare
       sleep(1)
 
       File.delete(full_path)
+    end
+
+    def config_vars_for_app(app_name)
+      heroku.config_var.info_for_app(app_name)
+    end
+
+    def heroku
+      @heroku ||= PlatformAPI.connect_oauth(ENV['OAUTH_TOKEN'])
     end
 
     def theme(file)
