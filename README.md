@@ -29,6 +29,7 @@ across similar/identical environments
 ```bash
 # Install Heroku CLI
 brew tap heroku/brew && brew install heroku
+
 # Login with Heroku CLI
 heroku login
 
@@ -40,6 +41,14 @@ heroku authorizations:create -d "Platform API token for environment variables"
 
 # Set the Token from above to an environment variable
 export OAUTH_TOKEN=<token>
+```
+
+If you want to add the environment variable to your shell permanently, you can
+run a variation of the command below:
+
+```bash
+# Add permanently to `.bash_profile`
+echo 'export OAUTH_TOKEN=<token>' >>~/.bash_profile
 ```
 
 ### Install gem
