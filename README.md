@@ -11,31 +11,45 @@ production environment variables
 This gem helps pull down the environment variables and give you
 a little interface to view & compare them with (via a UI)
 
-No server; it's all done via a CLI. It's really just a wrapper around
-some commands around the [heroku cli](https://devcenter.heroku.com/articles/heroku-cli) that does some formatting and
-munging of the output so you don't have to copy it all to Excel
-
-This gem wraps the heroku CLI tool to generates a small temporary
-HTML file & opens it using [launchy](https://github.com/copiousfreetime/launchy)
+The heavy lifting is done via the [heroku platform-api gem](https://github.com/heroku/platform-api)
+to retrieve environment variables, format them in an HTML page, and
+generate a small HTML file and open it with [launchy](https://github.com/copiousfreetime/launchy)
 
 It automates a few things:
 - Hides environment variables that match across all environments
 - Puts them in alpha order
 
 It's primarily intended to compare pre-production ENV variables
+across similar/identical environments
 
 ## Installation
 
 ### Prerequisites
-- Install Heroku CLI
-  ```bash
-  brew tap heroku/brew && brew install heroku
-  ```
 
-- Login with Heroku CLI
-  ```bash
-  heroku login
-  ```
+```bash
+# Install Heroku CLI
+brew tap heroku/brew && brew install heroku
+
+# Login with Heroku CLI
+heroku login
+
+# Install the heroku oauth plugin to generate an OAuth token
+heroku plugins:install heroku-cli-oauth
+
+# Create a token to access your applications
+heroku authorizations:create -d "Platform API token for environment variables"
+
+# Set the Token from above to an environment variable
+export OAUTH_TOKEN=<token>
+```
+
+If you want to add the environment variable to your shell permanently, you can
+run a variation of the command below:
+
+```bash
+# Add permanently to `.bash_profile`
+echo 'export OAUTH_TOKEN=<token>' >>~/.bash_profile
+```
 
 ### Install gem
 ```bash
@@ -43,7 +57,6 @@ gem install env_compare
 ```
 
 After installation you should have access to the `ec` executable wrapper.
-
 
 ## Usage
 Use `ec` command to start comparing 2 or more heroku application environment variables.
@@ -62,7 +75,7 @@ ec diff --all heroku-app-name1 heroku-app-name2 heroku-app-name3
 ```
 
 ### Themes
-- `--theme dark` **default*
+- `--theme dark` **default**
 - `--theme light`
 
 For Example:
