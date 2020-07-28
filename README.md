@@ -63,6 +63,8 @@ Use `ec` command to start comparing 2 or more heroku application environment var
 
 When only one application name is specified, output is shown in cli. Otherwise, your default browser is launched.
 
+## Compariing environment variables
+
 ### Show **differences** **default*
 ```bash
 ec diff heroku-app-name1 heroku-app-name2 heroku-app-name3
@@ -83,6 +85,25 @@ For Example:
 ec diff --theme light heroku-app-name1 heroku-app-name2
 ```
 
+## Updating environment variables across multiple apps
+
+You can use `ec update` to set or clear an environment variable across multiple Heroku
+applications.
+
+### Update an environment variable
+
+```bash
+ec update heroku-app-name1 heroku-app-name2 heroku-app-name3 --key=MY_KEY --value=asdf
+```
+
+### Clear an environment variable
+
+The default key value is nil; omit the `--key` argument if you want to clear an
+environment variable.
+
+```bash
+ec update heroku-app-name1 heroku-app-name2 heroku-app-name3 --key=MY_KEY
+```
 ## Development
 
 To test this on your machine locally, after cloning the repo:
