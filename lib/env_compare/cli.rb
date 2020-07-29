@@ -41,13 +41,18 @@ module EnvCompare
       save_and_open_file(html)
     end
 
-    # ec update app1 app2 KEY_NAME value
+    # ec update app1 app2 --key=KEY_NAME --value=val --no-force
     option :key, type: :string, desc: 'Key name'
     option :value, type: :string, default: nil, desc: 'Value of key'
-    desc 'update heroku-app-name-1 heroku-app-name-2 MY_KEY test', 'Update environment variable for 1+ environments'
+    option :force, type: :boolean, default: true, desc: 'Add the ENV, even if it does not exist'
+    desc 'update heroku-app-name-1 heroku-app-name-2 --key=MY_KEY --value=test', 'Update environment variable for 1+ environments'
     def update(*apps)
       apps.each do |app|
-        update_config(app, { options[:key] =>  options[:value] })
+        if options.force
+          config_var_update(app, { options[:key] => options[:value] })
+        else
+          conditional_config_var_update(app, { options[:key] => options[:value] })
+        end
       end
     end
 
@@ -114,8 +119,14 @@ module EnvCompare
       @theme_path ||= File.join(File.dirname(__dir__), '..', 'themes', "#{file}.erb")
     end
 
-    def update_config(app, body)
-      heroku.config_var.update(app, body)
+    def config_var_update(app_name, env_hash)
+      heroku.config_var.update(app_name, env_hash)
+    end
+
+    def conditional_config_var_update(app_name, env_hash)
+      return if config_vars_for_app(app_name)[options[:key]].nil?
+
+      config_var_update(app_name, env_hash)
     end
   end
 end
