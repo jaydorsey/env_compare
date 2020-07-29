@@ -41,6 +41,16 @@ module EnvCompare
       save_and_open_file(html)
     end
 
+    # ec update app1 app2 KEY_NAME value
+    option :key, type: :string, desc: 'Key name'
+    option :value, type: :string, default: nil, desc: 'Value of key'
+    desc 'update heroku-app-name-1 heroku-app-name-2 MY_KEY test', 'Update environment variable for 1+ environments'
+    def update(*apps)
+      apps.each do |app|
+        update_config(app, { options[:key] =>  options[:value] })
+      end
+    end
+
     private
 
     def all_keys
@@ -102,6 +112,10 @@ module EnvCompare
 
     def theme_path(file)
       @theme_path ||= File.join(File.dirname(__dir__), '..', 'themes', "#{file}.erb")
+    end
+
+    def update_config(app, body)
+      heroku.config_var.update(app, body)
     end
   end
 end
