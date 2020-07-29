@@ -41,7 +41,6 @@ module EnvCompare
       save_and_open_file(html)
     end
 
-    # ec update app1 app2 --key=KEY_NAME --value=val --no-force
     option :key, type: :string, desc: 'Key name'
     option :value, type: :string, default: nil, desc: 'Value of key'
     option :force, type: :boolean, default: true, desc: 'Add the ENV, even if it does not exist'
