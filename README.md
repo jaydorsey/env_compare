@@ -88,15 +88,22 @@ ec diff --theme light heroku-app-name1 heroku-app-name2
 ## Updating environment variables across multiple apps
 
 You can use `ec update` to set or clear an environment variable across multiple Heroku
-applications.
+applications. This includes the options:
 
-### Update an environment variable
+- `--key=` is required. The name of the Heroku environment variable you want to update.
+- `--value=` is optional. The value of the environment variable you want to update. If not provided, will unset the environment variable.
+- `--force` is a default option. Updates the environment variable, or adds it if not present.
+- `--no-force` is optional. Only update the environment variable if present in the application.
+
+### Examples
+
+#### Update an environment variable
 
 ```bash
 ec update heroku-app-name1 heroku-app-name2 heroku-app-name3 --key=MY_KEY --value=asdf
 ```
 
-### Clear an environment variable
+#### Clear an environment variable
 
 The default key value is nil; omit the `--key` argument if you want to clear an
 environment variable.
@@ -104,6 +111,7 @@ environment variable.
 ```bash
 ec update heroku-app-name1 heroku-app-name2 heroku-app-name3 --key=MY_KEY
 ```
+
 ## Development
 
 To test this on your machine locally, after cloning the repo:
@@ -118,7 +126,6 @@ You can also optionally build & install the gem locally to test:
     gem install pkg/env_compare.<version_number>.gem
 
 Then, use the `ec` command as normal.
-
 ### Publishing the gem
 
 If you have access to publish the gem on rubygems:
