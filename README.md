@@ -112,6 +112,21 @@ To test this on your machine locally, after cloning the repo:
     bundle
     bundle exec ec diff heroku-app-name1 heroku-app-name2
 
+You can also optionally build & install the gem locally to test:
+
+    rake build
+    gem install pkg/env_compare.<version_number>.gem
+
+Then, use the `ec` command as normal.
+
+### Publishing the gem
+
+If you have access to publish the gem on rubygems:
+
+    rake build
+    cd pkg
+    gem push env_compare.<version_number>.gem
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/jaydorsey/env_compare.
