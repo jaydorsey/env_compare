@@ -63,7 +63,7 @@ Use `ec` command to start comparing 2 or more heroku application environment var
 
 When only one application name is specified, output is shown in cli. Otherwise, your default browser is launched.
 
-## Compariing environment variables
+## Comparing environment variables
 
 ### Show **differences** **default*
 ```bash
