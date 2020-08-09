@@ -1,4 +1,8 @@
 # EnvCompare
+[![Gem Version](https://img.shields.io/gem/v/env_compare)](https://img.shields.io/gem/v/env_compare)
+![Gem Downloads](https://img.shields.io/gem/dt/env_compare)
+[![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop-hq/rubocop)
+[![GitHub License](https://img.shields.io/github/license/jaydorsey/env_compare.svg)](https://github.com/jaydorsey/env_compare/blob/main/LICENSE)
 
 Compare Heroku ENV variables across environments in an HTML
 table.
@@ -137,3 +141,5 @@ If you have access to publish the gem on rubygems:
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/jaydorsey/env_compare.
+
+[![Repo Contributors](https://img.shields.io/github/contributors/jaydorsey/env_compare)](https://img.shields.io/github/contributors/jaydorsey/env_compare)
