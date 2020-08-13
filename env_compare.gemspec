@@ -28,8 +28,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'launchy'
-  spec.add_dependency 'thor'
   spec.add_dependency 'platform-api'
+  spec.add_dependency 'thor'
 
   spec.add_development_dependency 'pry'
   spec.add_development_dependency 'rspec'
