@@ -9,4 +9,18 @@ require 'env_compare'
 
 # (If you use this, don't forget to add pry to your Gemfile!)
 require 'pry'
+
+def reload!
+  puts 'Reloading ...'
+
+  root_dir = File.expand_path('..', __dir__)
+  reload_dirs = %w[lib]
+
+  reload_dirs.each do |dir|
+    Dir.glob("#{root_dir}/#{dir}/**/*.rb").each { |file| load(file) }
+  end
+
+  true
+end
+
 Pry.start
