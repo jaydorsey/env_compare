@@ -96,8 +96,8 @@ applications. This includes the options:
 
 - `--key=` is required. The name of the Heroku environment variable you want to update.
 - `--value=` is optional. The value of the environment variable you want to update. If not provided, will unset the environment variable.
-- `--force` is a default option. Updates the environment variable, or adds it if not present.
-- `--no-force` is optional. Only update the environment variable if present in the application.
+- `--force` is a default option. Updates the environment variable, or adds it if not present. ** 0.1.3.pre.beta **
+- `--no-force` is optional. Only update the environment variable if present in the application. ** 0.1.3.pre.beta **
 
 ### Examples
 
