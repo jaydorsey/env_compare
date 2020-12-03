@@ -31,12 +31,12 @@ module EnvCompare
 
       heroku_results(envs)
 
-      # https://stackoverflow.com/a/5462069/2892779
       html =
-        theme(options[:theme]).
-          result(
-            ::EnvCompare::NameSpace.new(data: calculated_output(envs), headers: ['KEY', envs].flatten).get_binding
-          )
+        ::EnvCompare::Template.new(
+          data: calculated_output(envs),
+          headers: ['KEY', envs].flatten,
+          theme_base_path: theme_base_path
+        ).render(theme_name(options[:theme]))
 
       save_and_open_file(html)
     end
@@ -105,17 +105,27 @@ module EnvCompare
     end
 
     def heroku
-      @heroku ||= PlatformAPI.connect_oauth(ENV['OAUTH_TOKEN'])
+      @heroku ||= PlatformAPI.connect_oauth(ENV.fetch('OAUTH_TOKEN'))
     end
 
-    def theme(file)
-      return ERB.new(File.read(theme_path(file))) if File.exist?(theme_path(file))
+    # Returns a filename.ext when given a filename
+    #
+    # Also checks to make sure the file exists.
+    def theme_name(theme)
+      theme_file = "#{theme}.html.erb"
+
+      path = File.join(theme_base_path, theme_file)
+
+      return theme_file if File.exist?(path)
 
       raise MissingThemeError
     end
 
-    def theme_path(file)
-      @theme_path ||= File.join(File.dirname(__dir__), '..', 'themes', "#{file}.erb")
+    # Returns a path representing where themes are stored in the library
+    #
+    # Used for the ERB templates to resolve file locations
+    def theme_base_path
+      @theme_base_path ||= File.expand_path(File.join(File.dirname(__dir__), '..', 'themes'))
     end
 
     def config_var_update(app_name, env_hash)

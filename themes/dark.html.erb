@@ -3,18 +3,19 @@
   <style>
   :root {
     --black: #000;
-    --blue: #0040dd;
-    --gray: #545456;
-    --white: #fff;
+    --blue: #409cff;
+    --gray-object-only: #636366;
+    --orange: #ffb340;
+    --purple: #da8fff;
   }
 
   body {
-    background: var(--white);
+    background: var(--black);
     font-family: Arial, Helvetica, sans-serif;
   }
 
   table {
-    color: var(--black);
+    color: var(--purple);
     table-layout: fixed;
     width: 100%;
   }
@@ -22,12 +23,12 @@
   table,
   th,
   td {
-    border: 1px solid var(--gray);
+    border: 1px solid var(--gray-object-only);
     border-collapse: collapse;
   }
 
   th {
-    color: var(--black);
+    color: var(--orange);
     letter-spacing: 1px;
   }
 
@@ -42,7 +43,6 @@
   </style>
   </head>
   <body>
-    <% table_template = EnvCompare::NameSpace.new(headers: headers, data: data) %>
-    <%= ERB.new(File.new("themes/table_template.erb").read).result(table_template.get_binding) %>
+    <%= render 'table_template.html.erb' %>
   </body>
 </html>

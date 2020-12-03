@@ -1,17 +1,17 @@
 <table>
   <thead>
     <tr>
-      <% headers.each_with_index do |header, idx| %>
+      <% @headers.each_with_index do |header, idx| %>
         <th>
           <%= header %>&nbsp;
-          (<%= data.map { |col| col[idx] }.compact.size %>)
+          (<%= @data.map { |col| col[idx] }.compact.size %>)
         </th>
       <% end %>
     </tr>
   </thead>
 
   <tbody>
-    <% data.each do |row| %>
+    <% @data.each do |row| %>
       <tr>
         <% row.each do |cell| %>
           <td>
