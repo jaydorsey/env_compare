@@ -3,6 +3,9 @@
 ## main (unreleased)
 - WIP
 
+## 0.1.4 (2020-12-07)
+- Fixed bug with template path reference ([#26](https://github.com/jaydorsey/env_compare/issues/26))
+
 ## 0.1.3.pre.beta (2020-09-02)
 - Added `force` and `no-force` options for updating environment variables.
 
