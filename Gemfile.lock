@@ -41,7 +41,7 @@ GEM
     rake (12.3.3)
     rate_throttle_client (0.1.2)
     regexp_parser (1.7.1)
-    rexml (3.2.4)
+    rexml (3.2.5)
     rspec (3.9.0)
       rspec-core (~> 3.9.0)
       rspec-expectations (~> 3.9.0)
