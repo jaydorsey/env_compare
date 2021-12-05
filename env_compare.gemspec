@@ -7,6 +7,7 @@ Gem::Specification.new do |spec|
   spec.version = EnvCompare::VERSION
   spec.authors = ['Jay Dorsey']
   spec.email = ['jaydorsey@fastmail.com']
+  spec.license = 'MIT'
 
   spec.summary = 'Compare ENV variables across Heroku environments'
   spec.description = 'Compare ENV variables across Heroku environments'
